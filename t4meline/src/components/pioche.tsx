@@ -1,8 +1,6 @@
 import "./pioche.css";
 import Carte from "./carte";
-import React, { useState, useEffect } from "react";
 import { Card } from "../utils/types";
-import { loadCards } from "../utils/loadCards";
 
 export default function Pioche({
   pioche,
@@ -13,9 +11,6 @@ export default function Pioche({
   onDrawCard: (carte: Card) => void;
   carteSelectionnee: Card | null;
 }) {
-
-
-
   return (
     <div className="pioche">
       <h2>Pioche</h2>

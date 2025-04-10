@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Navigate, useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import Frise from "./frise";
 import Pioche from "./pioche";
 import Leaderboard from "./players";
@@ -10,7 +10,11 @@ import { useNavigate } from "react-router";
 function Partie() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { players, numCards: nbCards, maxPoints } = location.state || { players: [] };
+  const {
+    players,
+    numCards: nbCards,
+    maxPoints,
+  } = location.state || { players: [] };
   console.log("state :", location.state);
   const [playersState, setPlayersState] = useState<Player[]>(players);
 
@@ -42,30 +46,8 @@ function Partie() {
     fetchCards();
   }, [nbCards]);
 
-
   function nextPlayer() {
     setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % playersState.length);
-  }
-
-  function checkEndGame() {
-    // Condition 1 : Toutes les cartes ont été jouées
-    if (pioche.length === 0 && !carteSelectionnee) {
-      setIsGameOver(true);
-      return true;
-    }
-
-    // Condition 2 : Un joueur atteint le score maximum
-    if (maxPoints > 0 && playersState.some((player) => player.score >= maxPoints)) {
-      setIsGameOver(true);
-      return true;
-    }
-
-    if (pioche.length > nbCards) {
-      setIsGameOver(true);
-      return true;
-    }
-
-    return false;
   }
 
   function compareDates(date1: string, date2: string): number {
@@ -73,24 +55,33 @@ function Partie() {
     const value2 = parseSeasonalDate(date2, "start");
 
     if (value1 === null || value2 === null) {
-      console.warn(`Impossible de comparer les dates : "${date1}" et "${date2}"`);
+      console.warn(
+        `Impossible de comparer les dates : "${date1}" et "${date2}"`
+      );
       return 0;
     }
 
     return value1 - value2;
   }
 
-  function parseSeasonalDate(dateStr: string, mode: "start" | "average" = "start"): number | null {
+  function parseSeasonalDate(
+    dateStr: string,
+    mode: "start" | "average" = "start"
+  ): number | null {
     const seasonMap: { [key: string]: number } = {
-      "printemps": 0.0,
-      "été": 0.25,
-      "ete": 0.25,
-      "automne": 0.5,
-      "hiver": 0.75
+      printemps: 0.0,
+      été: 0.25,
+      ete: 0.25,
+      automne: 0.5,
+      hiver: 0.75,
     };
 
-    const seasons = [...dateStr.toLowerCase().matchAll(/(printemps|été|ete|automne|hiver)/g)];
-    const years = [...dateStr.matchAll(/\d{4}/g)].map(match => parseInt(match[0]));
+    const seasons = [
+      ...dateStr.toLowerCase().matchAll(/(printemps|été|ete|automne|hiver)/g),
+    ];
+    const years = [...dateStr.matchAll(/\d{4}/g)].map((match) =>
+      parseInt(match[0])
+    );
 
     if (years.length === 0) return null;
 
@@ -113,7 +104,9 @@ function Partie() {
   function isChronological(cards: Card[]): boolean {
     console.log("Vérification des cartes :", cards);
     for (let i = 1; i < cards.length; i++) {
-      if (compareDates(cards[i - 1].date.toString(), cards[i].date.toString()) > 0) {
+      if (
+        compareDates(cards[i - 1].date.toString(), cards[i].date.toString()) > 0
+      ) {
         return false;
       }
     }
@@ -143,7 +136,6 @@ function Partie() {
     setPioche(newPioche);
   }
 
-
   function handleAddCarte(carte: Card, index: number, isBefore: boolean) {
     setCartes((oldCartes) => {
       const newCartes = [...oldCartes];
@@ -152,7 +144,9 @@ function Partie() {
 
       if (!isChronological(newCartes)) {
         alert("Les cartes ne sont pas dans l'ordre chronologique !");
-        newCartes.sort((a, b) => compareDates(a.date.toString(), b.date.toString()));
+        newCartes.sort((a, b) =>
+          compareDates(a.date.toString(), b.date.toString())
+        );
       } else {
         setPlayersState((prevPlayers) => {
           const updatedPlayers = prevPlayers.map((player, idx) =>
@@ -186,11 +180,12 @@ function Partie() {
 
   useEffect(() => {
     if (pioche.length === 0 && carteSelectionnee) {
-      alert("La taille de la pioche dépasse la limite autorisée. Fin de la partie !");
+      alert(
+        "La taille de la pioche dépasse la limite autorisée. Fin de la partie !"
+      );
       setIsGameOver(true);
     }
   }, [pioche, carteSelectionnee]);
-
 
   return (
     <>

@@ -19,7 +19,7 @@ export async function loadCards(limit?: number): Promise<Card[]> {
   }
   const csvText = await response.text();
 
-  return new Promise<Card[]>((resolve, reject) => {
+  return new Promise<Card[]>((resolve) => {
     Papa.parse(csvText, {
       complete: (result) => {
         // Filtrer les lignes où une ou plusieurs cases sont vides
