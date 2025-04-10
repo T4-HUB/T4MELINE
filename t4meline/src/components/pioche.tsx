@@ -1,6 +1,6 @@
 import "./pioche.css";
 import Carte from "./carte";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card } from "../utils/types";
 import { loadCards } from "../utils/loadCards";
 
@@ -14,9 +14,10 @@ export default function Pioche({
   carteSelectionnee: Card | null;
 }) {
 
-
+  const audioRef = useRef(new Audio("/audio/card-flip.mp3"));
 
   return (
+
     <div className="pioche">
       <div className="pioche-layout">
         <div className="pioche-liste">
