@@ -172,7 +172,7 @@ function Partie() {
   return (
     
 
-    <div className="partie">
+  <div className="partie">
   <div className="pioche">  <Pioche
         pioche={pioche}
         onDrawCard={drawCard}

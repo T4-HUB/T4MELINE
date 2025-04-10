@@ -1,0 +1,43 @@
+/* Style pour centrer .end-game sans toucher au body */
+.end-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+
+    /* Centrage de l'élément */
+    position: absolute;  /* Position absolue par rapport à la fenêtre */
+    top: 50%;  /* Centrer verticalement */
+    left: 50%;  /* Centrer horizontalement */
+    transform: translate(-50%, -50%);  /* Ajuster pour véritablement centrer */
+}
+
+/* Titre principal */
+.end-game .title {
+    font-size: 2rem;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+/* Style du bouton */
+.end-game button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.end-game button:hover {
+    background-color: #0056b3;
+}
