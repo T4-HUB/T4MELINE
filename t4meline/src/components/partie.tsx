@@ -33,7 +33,9 @@ function Partie() {
   // État pour la carte sélectionnée
   const [carteSelectionnee, setCarteSelectionnee] = useState<Card | null>(null);
 
-  const [currentPlayerIndex, setCurrentPlayerIndex] = useState<number>(0);
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState<number>(
+    Math.floor(Math.random() * players.length)
+  );
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
 
   useEffect(() => {
@@ -174,7 +176,7 @@ function Partie() {
 
   useEffect(() => {
     if (isGameOver) {
-      navigate("/endgame");
+      navigate("/endgame", { state: { players: playersState } });
     }
   }, [isGameOver, playersState]);
 
