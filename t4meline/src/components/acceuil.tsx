@@ -90,6 +90,10 @@ function acceuil() {
               Annuler
             </button>
           </div>
+          <p className="sidebar-description">
+      Bienvenue dans T4meline ! Ce jeu consiste à organiser des événements ou des éléments dans le bon ordre chronologique. 
+      Configurez les paramètres de la partie ci-dessus, ajoutez des joueurs, et commencez à jouer !
+    </p>
         </div>
       )}
 

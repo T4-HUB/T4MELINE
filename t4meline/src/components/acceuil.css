@@ -345,3 +345,7 @@ html, body {
   .delete-button:hover {
     background-color: var(--yellow); /* Change la couleur au survol */
   }
+
+  .sidebar p {
+    margin-top: 30%;
+  }
