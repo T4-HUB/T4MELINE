@@ -125,9 +125,11 @@ Les cartes sont chargées dynamiquement depuis un fichier CSV hébergé en ligne
 
 ## **8. Procédures d'installation et execution**
 
-- Hebergez votre site sur github pour pouvoir y accéder rapidement et cliquez sur le lien pour jouer.
+- Lien vers notre jeu [https://t4-hub.github.io/T4MELINE/]
 
 ### **9. Fonctionnalité avancée**
+
+---
 
 -Permettre le multijoueur en ligne sur plusieurs machine. (utilisation de socket.io)
 
