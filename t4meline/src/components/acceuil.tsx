@@ -91,7 +91,7 @@ function acceuil() {
 
       <div className="main-content">
         <div className="input-section">
-          <h1>T4meline</h1>
+          <h1 className='titrepageacceuil'>T4meline</h1>
           <div className="input- boutton">
             <input
               type="text"

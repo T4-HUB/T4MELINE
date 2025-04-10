@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import Frise from "./frise";
 import Pioche from "./pioche";
@@ -11,6 +11,10 @@ import "./partie.css";
 function Partie() {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const cardFlipRef = useRef(new Audio("/audio/card-flip.mp3"));
+  const correctRef = useRef(new Audio("/audio/answer-correct.mp3"));
+  const wrongRef = useRef(new Audio("/audio/wrong.mp3"));
   const {
     players,
     numCards: nbCards,
@@ -119,18 +123,22 @@ function Partie() {
     }
 
     if (pioche.length === 0) {
-      alert("No more cards in the deck!");
       return;
     }
 
     if (pioche.length > nbCards) {
-      alert(`Vous ne pouvez pas tirer plus de ${nbCards} cartes.`);
       return;
     }
 
     const randomIndex = Math.floor(Math.random() * pioche.length);
     const selectedCard = pioche[randomIndex];
     setCarteSelectionnee(selectedCard);
+
+    const audio = cardFlipRef.current;
+    audio.currentTime = 0; // Remet à zéro le temps de lecture
+    audio.play().catch((error) => {
+      console.error("Erreur lors de la lecture du son :", error);
+    });
 
     const newPioche = pioche.filter((_, index) => index !== randomIndex);
     setPioche(newPioche);
@@ -143,7 +151,11 @@ function Partie() {
       newCartes.splice(insertionIndex, 0, carte);
 
       if (!isChronological(newCartes)) {
-        alert("Les cartes ne sont pas dans l'ordre chronologique !");
+        const audio = wrongRef.current;
+        audio.currentTime = 0; // Remet à zéro le temps de lecture
+        audio.play().catch((error) => {
+          console.error("Erreur lors de la lecture du son :", error);
+        });
         newCartes.sort((a, b) =>
           compareDates(a.date.toString(), b.date.toString())
         );
@@ -159,6 +171,12 @@ function Partie() {
           if (updatedPlayers.some((player) => player.score >= maxPoints)) {
             setIsGameOver(true); // Déclencher la fin de partie
           }
+
+          const audio = correctRef.current;
+          audio.currentTime = 0; // Remet à zéro le temps de lecture
+          audio.play().catch((error) => {
+            console.error("Erreur lors de la lecture du son :", error);
+          });
 
           return updatedPlayers;
         });
@@ -180,34 +198,36 @@ function Partie() {
 
   useEffect(() => {
     if (pioche.length === 0 && carteSelectionnee) {
-      alert(
-        "La taille de la pioche dépasse la limite autorisée. Fin de la partie !"
-      );
       setIsGameOver(true);
     }
   }, [pioche, carteSelectionnee]);
 
   return (
-    
-
     <div className="partie">
-  <div className="pioche">  <Pioche
-        pioche={pioche}
-        onDrawCard={drawCard}
-        carteSelectionnee={carteSelectionnee}
-      /> </div>
-  <div className="frise-container"> <Frise
-            cartes={cartes}
-            onAddCarte={(index, isBefore) =>
-              carteSelectionnee &&
-              handleAddCarte(carteSelectionnee, index, isBefore)
-            }
-          /></div>
-          <div className="leaderboard"> <h2>Joueur actuel : {playersState[currentPlayerIndex].name}</h2>
-  <Leaderboard players={playersState} /> </div>
-  
-  </div>
-   
+      <div className="pioche">
+        {" "}
+        <Pioche
+          pioche={pioche}
+          onDrawCard={drawCard}
+          carteSelectionnee={carteSelectionnee}
+        />{" "}
+      </div>
+      <div className="frise-container">
+        {" "}
+        <Frise
+          cartes={cartes}
+          onAddCarte={(index, isBefore) =>
+            carteSelectionnee &&
+            handleAddCarte(carteSelectionnee, index, isBefore)
+          }
+        />
+      </div>
+      <div className="leaderboard">
+        {" "}
+        <h2>Joueur actuel : {playersState[currentPlayerIndex].name}</h2>
+        <Leaderboard players={playersState} />{" "}
+      </div>
+    </div>
   );
 }
 

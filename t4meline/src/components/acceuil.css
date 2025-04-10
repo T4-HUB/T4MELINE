@@ -20,7 +20,7 @@ html, body {
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: var(--pink) ;
+    background: linear-gradient(to bottom, #b33d5e, #ff5c8a, #b33d5e);
     background-size: cover;
     background-position: center;
     color: var(--text-dark);
@@ -32,10 +32,11 @@ html, body {
     text-align: center;
   }
 
-  h1 {
+  .titrepageacceuil {
     font-size:60px;
     margin-bottom: 1rem;
     color: rgb(255, 255, 255);
+    text-shadow: #1e1e2f 0px 0px 10px;
   }
   
   .logo {
@@ -231,22 +232,36 @@ html, body {
 
   
   /* Bouton Play */
-  .play-button button {
-    font-size: 20px;
-    background-color: rgb(77, 155, 40);
-    color: rgb(255, 252, 252);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: 2px solid  rgb(235, 255, 235);
-  }
-  
-  .play-button button:hover {
-    background-color: var(--purple);
-  }
+.play-button button {
+  font-size: 20px;
+  background-color: rgb(77, 155, 40);
+  color: rgb(255, 252, 252);
+  border: 2px solid rgb(235, 255, 235);
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.play-button button:hover {
+  background-color: var(--purple);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.play-button button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.play-button button:focus {
+  outline: none;
+  border-color: rgb(255, 255, 255);
+}
   
   /* Liste des items */
   .items-list {

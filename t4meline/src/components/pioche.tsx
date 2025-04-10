@@ -1,5 +1,4 @@
 import "./pioche.css";
-import Carte from "./carte";
 import { Card } from "../utils/types";
 
 export default function Pioche({
@@ -31,7 +30,12 @@ export default function Pioche({
           <h3>Carte sélectionnée</h3>
           <div className="selected-card">
             {carteSelectionnee ? (
-              <Carte carte={carteSelectionnee} isVisible={false} />
+              <div className="carte-title">
+                <h2>{carteSelectionnee.titre}</h2>
+                <div className="carte-footer">
+                  <h2>?</h2>
+                </div>
+              </div>
             ) : (
               <p>Aucune carte sélectionnée</p>
             )}
