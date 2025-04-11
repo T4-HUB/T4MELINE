@@ -28,7 +28,7 @@
   height: 80%;
   justify-content: space-between;
   flex-direction: column;
-  }
+}
 
 .pioche-liste,
 .selection {
@@ -57,6 +57,13 @@
 .carte-title {
   font-size: 12px;
   font-weight: bold;
+}
+.carte__details {
+  width: 220px;
+  height: 350px;
+  background-color: #f9f9f9;
+  color: #1a1a1a;
+  border-radius: 8px;
 }
 
 .card-back:hover {
@@ -89,14 +96,38 @@
   width: 170px;
   height: 100%;
   background-color: #dceefb;
-  border: 2px dashed #4a90e2;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: bold;
   color: #3178c6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 18px;
+}
+
+.selected-card .carte-title {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.selected-card .carte-title h2 {
+  margin-top: 4px;
+}
+
+.selected-card .carte-footer {
+  height: 10%;
+  margin-top: 8px;
+  background-color: rgb(118, 162, 255);
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-card .carte-footer h2 {
+  color: white;
+  font-size: 32px;
+  margin-top: 0;
+  margin-bottom: 4px;
 }
 
 .carte-back {

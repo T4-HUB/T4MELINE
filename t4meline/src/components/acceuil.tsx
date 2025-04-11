@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/Bleu_canard.png";
 import './acceuil.css'
 
 
@@ -51,7 +52,7 @@ function acceuil() {
               Nombre de cartes :
               <input
                 type="range"
-                min="1"
+                min="2"
                 max={items.length > 0 ? items.length : 100}
                 value={numCards}
                 onChange={(e) => setNumCards(Number(e.target.value))}
@@ -60,6 +61,8 @@ function acceuil() {
                 type="number"
                 value={numCards}
                 onChange={(e) => setNumCards(Number(e.target.value))}
+                min={2}
+                max={100}
               />
             </label>
           </div>
@@ -77,6 +80,8 @@ function acceuil() {
                 type="number"
                 value={maxPoints}
                 onChange={(e) => setMaxPoints(Number(e.target.value))}
+                min={1}
+                max={10}
               />
             </label>
           </div>
@@ -86,12 +91,16 @@ function acceuil() {
               Annuler
             </button>
           </div>
+          <p className="sidebar-description">
+      Bienvenue dans T4meline ! Ce jeu consiste à organiser des événements ou des éléments dans le bon ordre chronologique. 
+      Configurez les paramètres de la partie ci-dessus, ajoutez des joueurs, et commencez à jouer !
+    </p>
         </div>
       )}
 
       <div className="main-content">
         <div className="input-section">
-          <h1 className='titrepageacceuil'>T4meline</h1>
+        <img src={logo}  alt="T4meline Logo" className="logo-image" />
           <div className="input- boutton">
             <input
               type="text"
@@ -105,10 +114,21 @@ function acceuil() {
         </div>
 
         <ul className="items-list">
-          {items.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
+  {items.map((item, index) => (
+    <li key={index} className="items-list__item">
+      {item}
+      <button
+        className="delete-button"
+        onClick={() => {
+          const updatedItems = items.filter((_, i) => i !== index);
+          setItems(updatedItems);
+        }}
+      >
+        ❌
+      </button>
+    </li>
+  ))}
+</ul>
       </div>
       <div className="bottom-bar">
         <div className="play-button">

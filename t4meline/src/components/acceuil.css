@@ -277,17 +277,21 @@ html, body {
   }
   
   .items-list li {
+    display: flex; /* Active le flexbox */
+    justify-content: space-between; /* Place le texte et le bouton aux extrémités */
+    align-items: center; /* Centre verticalement le contenu */
     background-color: var(--blue);
     color: var(--text-light);
     padding: 10px;
     margin-bottom: 5px;
     border-radius: 5px;
-    text-align: center;
+    background-color: #175676;
     transition: background-color 0.3s ease;
   }
   
   .items-list li:hover {
     background-color: var(--pink);
+    background-color: #154c68;
   }
   
 
@@ -324,4 +328,34 @@ html, body {
 
   button{
     margin-left: 20px;
+  }
+
+  .delete-button {
+    height: 30px; /* Ajuste la taille pour qu'il soit plus petit */
+    width: 30px;
+    font-size: 16px;
+    background-color: white; /* Fond blanc */
+    border: none; /* Supprime les bordures */
+    border-radius: 5px; /* Coins arrondis */
+    display: flex; /* Active le flexbox */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    cursor: pointer; /* Change le curseur en pointeur */
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: var(--yellow); /* Change la couleur au survol */
+  }
+
+  .sidebar p {
+    margin-top: 30%;
+  }
+
+  
+  .logo-image {
+    max-width: 400px; /* Réduisez la largeur maximale de l'image */
+    height: auto; /* Conserve les proportions de l'image */
+    display: block; /* Centre l'image horizontalement */
+   
   }

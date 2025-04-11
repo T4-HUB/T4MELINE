@@ -1,5 +1,4 @@
 import "./pioche.css";
-import Carte from "./carte";
 import React, { useState, useEffect, useRef } from "react";
 import { Card } from "../utils/types";
 import { loadCards } from "../utils/loadCards";
@@ -13,11 +12,9 @@ export default function Pioche({
   onDrawCard: (carte: Card) => void;
   carteSelectionnee: Card | null;
 }) {
-
   const audioRef = useRef(new Audio("/audio/card-flip.mp3"));
 
   return (
-
     <div className="pioche">
       <div className="pioche-layout">
         <div className="pioche-liste">
@@ -37,7 +34,12 @@ export default function Pioche({
           <h3>Carte sélectionnée</h3>
           <div className="selected-card">
             {carteSelectionnee ? (
-              <Carte carte={carteSelectionnee} isVisible={false} />
+              <div className="carte-title">
+                <h2>{carteSelectionnee.titre}</h2>
+                <div className="carte-footer">
+                  <h2>?</h2>
+                </div>
+              </div>
             ) : (
               <p>Aucune carte sélectionnée</p>
             )}
