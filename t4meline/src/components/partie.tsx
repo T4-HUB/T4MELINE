@@ -141,6 +141,8 @@ function Partie() {
         audio.play().catch((error) => {
           console.error("Erreur lors de la lecture du son :", error);
         });
+
+        alert("Les cartes ne sont pas dans l'ordre chronologique !");
         newCartes.sort((a, b) => compareDates(a.date.toString(), b.date.toString()));
       } else {
         setPlayersState((prevPlayers) => {
