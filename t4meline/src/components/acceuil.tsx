@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/Bleu_canard.png";
 import './acceuil.css'
 
 
@@ -99,7 +100,7 @@ function acceuil() {
 
       <div className="main-content">
         <div className="input-section">
-          <h1 className='titrepageacceuil'>T4meline</h1>
+        <img src={logo}  alt="T4meline Logo" className="logo-image" />
           <div className="input- boutton">
             <input
               type="text"
