@@ -12,9 +12,13 @@ function Partie() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const cardFlipRef = useRef(new Audio("/audio/card-flip.mp3"));
-  const correctRef = useRef(new Audio("/audio/answer-correct.mp3"));
-  const wrongRef = useRef(new Audio("/audio/wrong.mp3"));
+  const cardFlipRef = useRef(
+    new Audio("../../T4MELINE/public/audio/card-flip.mp3")
+  );
+  const correctRef = useRef(
+    new Audio("../../T4MELINE/public/audio/answer-correct.mp3")
+  );
+  const wrongRef = useRef(new Audio("../../T4MELINE/public/audio/wrong.mp3"));
   const {
     players,
     numCards: nbCards,
